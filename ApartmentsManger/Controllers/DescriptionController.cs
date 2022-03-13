@@ -19,7 +19,7 @@ namespace ApartmentsManger.Controllers
             var description = db.Apartments.SingleOrDefault(a => a.IDApartment == apartmentId).Description;
             if (description == null)
             {
-                return RedirectToAction("Create", new { id = apartmentId });
+                return RedirectToAction("Create", new { apartmentId = apartmentId });
             }
             return View(description);
         }
@@ -49,7 +49,7 @@ namespace ApartmentsManger.Controllers
                 db.SaveChanges();
                 newDescription = db.Descriptions.SingleOrDefault(a => a.ApartmentIDApartment == description.ApartmentIDApartment);
             }
-            return RedirectToAction("Details", new { id = newDescription.IDDescription });
+            return RedirectToAction("Details", new { apartmentId = newDescription.IDDescription });
         }
 
         public ActionResult Edit(int? id)
